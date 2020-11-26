@@ -82,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     controller: _controller,
                     decoration: InputDecoration(
                       hintText: "Search for a word",
+                      hintStyle: TextStyle(fontWeight: FontWeight.bold),
                       contentPadding: const EdgeInsets.only(left: 24.0),
                       border: InputBorder.none,
                     ),
@@ -108,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
           builder: (BuildContext ctx, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return Center(
-                child: Text("Enter a search word"),
+                child: Text("Enter a search word",style: TextStyle(fontSize: 20.0,fontWeight:FontWeight.bold),),
               );
             }
 
@@ -124,6 +125,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 return ListBody(
                   children: <Widget>[
                     Container(
+                      width: 80.0,
+                      height: 80.0,
                       color: Colors.grey[300],
                       child: ListTile(
                         leading: snapshot.data["definitions"][index]["image_url"] == null
@@ -131,12 +134,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             : CircleAvatar(
                           backgroundImage: NetworkImage(snapshot.data["definitions"][index]["image_url"]),
                         ),
-                        title: Text(_controller.text.trim() + "(" + snapshot.data["definitions"][index]["type"] + ")"),
+                        title: Text(_controller.text.trim() + "(" + snapshot.data["definitions"][index]["type"] + ")",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20.0),),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(snapshot.data["definitions"][index]["definition"]),
+                      child: Text(snapshot.data["definitions"][index]["definition"],style: TextStyle(color: Colors.black,fontSize: 17.0,fontWeight: FontWeight.w700),),
                     )
                   ],
                 );
